@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title%} Admin dashboard {% endblock %}
+
+{% block content %}
+<div class="center-pages">
+    <div id="admin-con">
+        <h2 class="text-center mb-5">Welcome to your dashboard {{current_user.username}}</h2>
+        <table  class="table table-striped table-hover  table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Booking Id</th>
+                    <th>Service</th>
+                    <th>Date/Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <th>{{booking.user.username}}</th>
+                    <th>{{booking.user.email}}</th>
+                    <th>{{booking.id}}</th>
+                    <th>{{booking.service}}</th>
+                    <th>{{booking.datetime}}</th>
+                    <th>{{booking.status}}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+{% endblock %}

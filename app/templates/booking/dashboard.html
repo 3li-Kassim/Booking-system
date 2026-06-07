@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block title %} dashboard {% endblock %}
+
+
+{% block content %}
+
+<div class="center-pages">
+    <div class="center-top">
+        <h2> Welcome to your dashboard {{current_user.username }} </h2>
+        <div class="alert-container">
+            {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            {{message}}
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="center-center">
+        {% if bookings %}
+        {% for booking in bookings %}
+        <div class="booking-cards show-booking">
+            <span class="booking-service">{{booking.service}}</span>
+            <span class="booking-date">{{booking.datetime.strftime("%d %b %Y, %I:%M%p")}}</span>
+            <span class="booking-status">{{booking.status}}</span>
+            <a href="{{url_for('booking.cancel', booking_id = booking.id )}}" class="cancel">Cancel</a>
+        </div>
+        {% endfor %}
+        {% else %}
+        <span id="empty-str"><p>You don't have any bookings yet. Create one below!</p></span>
+        {% endif %}
+    </div>
+
+    <div id="center-bottom">
+        <a class="a-btn"   href="{{url_for('booking.create_booking')}}">Book Now</a>
+    </div>
+
+</div>
+
+
+{% endblock %}

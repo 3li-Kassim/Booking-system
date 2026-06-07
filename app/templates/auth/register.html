@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %} Register {% endblock %}
+
+
+{% block content %}
+<div id="center-auth">
+    <div class="card p-4 shadow" style="width:400px">
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+        <h2 class="text-center mb-4">Register</h2>
+        <form action="{{url_for('auth.register')}}" method="post">
+            <div class="mb-3">
+                <label for="username">Username</label>
+                <input name="username" class="form-control" autocomplete="off" autofocus title="Enter your username"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" title="Enter you email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password">Password</label>
+                <input type="password" name="password" title="Enter you password" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
+        </form>
+        <p class="text-center mt-3">Already have an account? <a href="{{url_for('auth.login')}}">Login</a></p>
+    </div>
+
+</div>
+
+{% endblock %}

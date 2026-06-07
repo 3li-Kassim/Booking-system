@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %} create booking {% endblock %}
+
+{% block content %}
+
+<div class="center-pages">
+    <div class="booking-cards">
+        <h2 class="mb-4 text-center fw-bold">Create a booking</h2>
+        <form action="{{url_for('booking.create_booking')}}" method="post">
+            <div class="mb-3">
+                <label for="service">Choose a Service</label>
+                <select name="service" id="service" class="form-select" required>
+                    <option value="0" style="display:none;">Pick a service</option>
+                    <option value="Consultation">Consultation</option>
+                    <option value="Appointment">Appointment</option>
+                    <option value="Meeting">Meeting</option>
+                    <option value="Haircut">Haircut</option>
+                    <option value="other">Other</option>
+                </select>
+                <label for="other" id="label-other" style="display:none;">Please include other services</label>
+                <input type="text" name="other" id="other" class="form-control" style="display:none;">
+            </div>
+
+            <div class="mb-3">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="time">Time</label>
+                <input type="time" id="time" name="time" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="notes">Notes (Optional)</label>
+                <input type="text" id="notes" class="form-control" name="notes">
+            </div>
+            <button type="submit"  class="a-btn sub-booking">Submit</button>
+        </form>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
